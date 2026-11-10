@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <title>Catime</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 7.5V12l3 1.8" />
+      </symbol>
+      <symbol id="i-timer" viewBox="0 0 24 24">
+        <path d="M9 2.8h6" />
+        <path d="M12 2.8v3" />
+        <circle cx="12" cy="13.5" r="8" />
+        <path d="M12 13.5V9.2" />
+        <path d="M18 7.5l1.4-1.4" />
+      </symbol>
+      <symbol id="i-stopwatch" viewBox="0 0 24 24">
+        <circle cx="12" cy="13.6" r="7.7" />
+        <path d="M9.4 2.5h5.2" />
+        <path d="M12 2.5v3.4" />
+        <path d="M12 13.6V9.4" />
+        <path d="M18.9 7.2l1.2-1.2" />
+      </symbol>
+      <symbol id="i-pomodoro" viewBox="0 0 24 24">
+        <path d="M12 7.2c-4.1 0-7.2 3.3-7.2 7.2S7.9 21 12 21s7.2-2.7 7.2-6.6-3.1-7.2-7.2-7.2Z" />
+        <path d="M12 7.2c0-2.1.8-3.6 2.4-4.2.2 2-.7 3.4-2.4 4.2Z" />
+        <path d="M8.4 10.6 7 9.2" />
+        <path d="M15.6 10.6 17 9.2" />
+      </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="M8.2 5.6c0-.8.9-1.3 1.6-.9l8 5.5c.6.4.6 1.3 0 1.7l-8 5.5c-.7.5-1.6 0-1.6-.9V5.6Z" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24">
+        <rect x="7" y="5" width="3.6" height="14" rx="1.2" fill="currentColor" stroke="none" />
+        <rect x="13.4" y="5" width="3.6" height="14" rx="1.2" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="i-reset" viewBox="0 0 24 24">
+        <path d="M4.8 9.2A7.5 7.5 0 1 1 4.5 14" />
+        <path d="M4.4 4.8v4.7H9" />
+      </symbol>
+      <symbol id="i-skip" viewBox="0 0 24 24">
+        <path d="M6 6.4 13 12l-7 5.6V6.4Z" />
+        <path d="M17.5 6.4v11.2" />
+      </symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3.1" />
+        <path d="M19.2 13.2a7.7 7.7 0 0 0 0-2.4l2-1.5-2-3.4-2.4 1a7.5 7.5 0 0 0-2.1-1.2L14.4 3h-4l-.3 2.7a7.5 7.5 0 0 0-2.1 1.2l-2.4-1-2 3.4 2 1.5a7.7 7.7 0 0 0 0 2.4l-2 1.5 2 3.4 2.4-1a7.5 7.5 0 0 0 2.1 1.2l.3 2.7h4l.3-2.7a7.5 7.5 0 0 0 2.1-1.2l2.4 1 2-3.4-2-1.5Z" />
+      </symbol>
+      <symbol id="i-minimize" viewBox="0 0 24 24">
+        <path d="M6 12h12" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="M6.5 6.5l11 11" />
+        <path d="M17.5 6.5l-11 11" />
+      </symbol>
+      <symbol id="i-pencil" viewBox="0 0 24 24">
+        <path d="M13.8 5.4 18.6 10.2 8.8 20H4v-4.8L13.8 5.4Z" />
+        <path d="M12.2 7l4.8 4.8" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M4.8 12.6 9.6 17.4 19.2 6.6" />
+      </symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24">
+        <path d="M6.5 10.2a5.5 5.5 0 0 1 11 0c0 4 1.4 5.5 1.4 5.5H5.1s1.4-1.5 1.4-5.5Z" />
+        <path d="M10 19a2 2 0 0 0 4 0" />
+      </symbol>
+      <symbol id="i-grip" viewBox="0 0 24 24">
+        <path d="M20 14 14 20M20 19l-1 1M16 20l4-4" />
+      </symbol>
+      <symbol id="i-coffee" viewBox="0 0 24 24">
+        <path d="M5 9h11v5.2A4.8 4.8 0 0 1 11.2 19H9.8A4.8 4.8 0 0 1 5 14.2V9Z" />
+        <path d="M16 10h1.8a2.6 2.6 0 0 1 0 5.2H16" />
+        <path d="M7 3.5c0 1 .8 1 .8 2M11 3.5c0 1 .8 1 .8 2" />
+      </symbol>
+    </svg>
+
+    <div id="app" class="app" data-mode="clock" data-phase="work">
+      <header class="topbar" data-drag>
+        <div class="brand">
+          <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+          <span class="brand-name">CATIME</span>
+          <span class="mode-chip" id="mode-chip">Clock</span>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" id="btn-settings" title="Settings (S)" aria-label="Open settings">
+            <svg class="icon"><use href="#i-settings" /></svg>
+          </button>
+          <button class="icon-btn" id="btn-minimize" title="Minimize" aria-label="Minimize window">
+            <svg class="icon"><use href="#i-minimize" /></svg>
+          </button>
+          <button class="icon-btn danger" id="btn-close" title="Quit Catime (Ctrl+Q)" aria-label="Quit Catime">
+            <svg class="icon"><use href="#i-close" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="stage" data-drag>
+        <div class="time-block" data-no-drag>
+          <button class="time-button" id="time-button" title="Start or pause (Space)" aria-label="Start or pause timer">
+            <span class="time-main" id="time-main">--:--</span>
+            <span class="time-suffix" id="time-suffix"></span>
+          </button>
+          <div class="meta">
+            <span class="meta-status" id="meta-left"></span>
+            <span class="meta-sep" aria-hidden="true"></span>
+            <span class="meta-info" id="meta-right"></span>
+            <button class="meta-edit" id="meta-edit" title="Set countdown duration" aria-label="Set countdown duration" hidden>
+              <svg class="icon"><use href="#i-pencil" /></svg>
+            </button>
+            <span class="cycle-dots" id="cycle-dots" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div class="controls" id="controls" data-no-drag>
+          <button class="control primary" id="btn-toggle" title="Start or pause (Space)" aria-label="Start or pause timer">
+            <svg class="icon"><use href="#i-play" id="toggle-icon-use" /></svg>
+          </button>
+          <button class="control" id="btn-reset" title="Reset (R)" aria-label="Reset timer">
+            <svg class="icon"><use href="#i-reset" /></svg>
+          </button>
+          <button class="control" id="btn-skip" title="Skip phase" aria-label="Skip pomodoro phase" hidden>
+            <svg class="icon"><use href="#i-skip" /></svg>
+          </button>
+        </div>
+      </main>
+
+      <nav class="modebar" aria-label="Timer mode">
+        <button class="mode" data-mode="clock" title="Clock (1)">
+          <svg class="icon"><use href="#i-clock" /></svg>
+          <span>Clock</span>
+        </button>
+        <button class="mode" data-mode="countdown" title="Countdown (2)">
+          <svg class="icon"><use href="#i-timer" /></svg>
+          <span>Timer</span>
+        </button>
+        <button class="mode" data-mode="stopwatch" title="Stopwatch (3)">
+          <svg class="icon"><use href="#i-stopwatch" /></svg>
+          <span>Stopwatch</span>
+        </button>
+        <button class="mode" data-mode="pomodoro" title="Pomodoro (4)">
+          <svg class="icon"><use href="#i-pomodoro" /></svg>
+          <span>Pomodoro</span>
+        </button>
+      </nav>
+
+      <button class="resize-grip" id="resize-grip" title="Drag to resize" aria-label="Resize window" data-no-drag>
+        <svg class="icon"><use href="#i-grip" /></svg>
+      </button>
+
+      <!-- Right-click menu -->
+      <div class="menu" id="context-menu" role="menu" hidden>
+        <div class="menu-modes" aria-label="Mode">
+          <button class="menu-item mode-item" data-menu-mode="clock" role="menuitem">
+            <svg class="icon"><use href="#i-clock" /></svg><span>Clock</span>
+          </button>
+          <button class="menu-item mode-item" data-menu-mode="countdown" role="menuitem">
+            <svg class="icon"><use href="#i-timer" /></svg><span>Timer</span>
+          </button>
+          <button class="menu-item mode-item" data-menu-mode="stopwatch" role="menuitem">
+            <svg class="icon"><use href="#i-stopwatch" /></svg><span>Stopwatch</span>
+          </button>
+          <button class="menu-item mode-item" data-menu-mode="pomodoro" role="menuitem">
+            <svg class="icon"><use href="#i-pomodoro" /></svg><span>Pomodoro</span>
+          </button>
+        </div>
+        <div class="menu-sep"></div>
+        <button class="menu-item" id="menu-always-top" role="menuitem">
+          <svg class="icon"><use href="#i-minimize" /></svg><span>Always on top</span><svg class="icon check" id="menu-top-check"><use href="#i-check" /></svg>
+        </button>
+        <button class="menu-item" id="menu-reset" role="menuitem">
+          <svg class="icon"><use href="#i-reset" /></svg><span>Reset current timer</span>
+        </button>
+        <button class="menu-item" id="menu-settings" role="menuitem">
+          <svg class="icon"><use href="#i-settings" /></svg><span>Settings…</span>
+        </button>
+        <div class="menu-sep"></div>
+        <button class="menu-item danger" id="menu-quit" role="menuitem">
+          <svg class="icon"><use href="#i-close" /></svg><span>Quit Catime</span>
+        </button>
+      </div>
+
+      <!-- Countdown duration popover -->
+      <div class="popover" id="duration-popover" data-no-drag hidden>
+        <div class="popover-head">
+          <div>
+            <p class="eyebrow">Countdown</p>
+            <h3>Set duration</h3>
+          </div>
+          <button class="icon-btn" id="btn-popover-close" title="Close" aria-label="Close duration editor">
+            <svg class="icon"><use href="#i-close" /></svg>
+          </button>
+        </div>
+        <div class="preset-grid" id="countdown-presets">
+          <button data-seconds="60">1m</button>
+          <button data-seconds="180">3m</button>
+          <button data-seconds="300">5m</button>
+          <button data-seconds="600">10m</button>
+          <button data-seconds="900">15m</button>
+          <button data-seconds="1500">25m</button>
+          <button data-seconds="2700">45m</button>
+          <button data-seconds="3600">1h</button>
+        </div>
+        <div class="time-inputs big">
+          <label><input id="duration-h" type="number" min="0" max="24" step="1" value="0" /><span>h</span></label>
+          <span class="colon">:</span>
+          <label><input id="duration-m" type="number" min="0" max="59" step="1" value="5" /><span>m</span></label>
+          <span class="colon">:</span>
+          <label><input id="duration-s" type="number" min="0" max="59" step="1" value="0" /><span>s</span></label>
+        </div>
+        <div class="popover-actions">
+          <button class="btn ghost" id="btn-duration-set">Set</button>
+          <button class="btn solid" id="btn-duration-start">Set &amp; start</button>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <section class="settings" id="settings" hidden aria-label="Settings">
+        <header class="settings-head" data-drag>
+          <div>
+            <p class="eyebrow">Catime</p>
+            <h2>Preferences</h2>
+          </div>
+          <button class="icon-btn" id="btn-settings-close" title="Done (Esc)" aria-label="Close settings">
+            <svg class="icon"><use href="#i-close" /></svg>
+          </button>
+        </header>
+
+        <div class="settings-scroll">
+          <section class="group">
+            <div class="group-head"><h3>Appearance</h3><span class="hint">Live preview</span></div>
+
+            <div class="theme-swatches" id="theme-swatches" aria-label="Theme presets">
+              <button data-theme="midnight" title="Midnight" style="--sw-bg:#101320;--sw-accent:#8AB4FF"></button>
+              <button data-theme="ember" title="Ember" style="--sw-bg:#1C1210;--sw-accent:#FF9E6D"></button>
+              <button data-theme="moss" title="Moss" style="--sw-bg:#0F1A17;--sw-accent:#7AD9AE"></button>
+              <button data-theme="lilac" title="Lilac" style="--sw-bg:#161223;--sw-accent:#C4A7FF"></button>
+              <button data-theme="mono" title="Mono" style="--sw-bg:#0B0B0C;--sw-accent:#D7D7D7"></button>
+            </div>
+
+            <div class="field">
+              <label for="font-family">Font family</label>
+              <input id="font-family" list="font-options" spellcheck="false" autocomplete="off" />
+              <datalist id="font-options">
+                <option value="Cantarell"></option>
+                <option value="Inter"></option>
+                <option value="Ubuntu"></option>
+                <option value="Noto Sans"></option>
+                <option value="DejaVu Sans"></option>
+                <option value="Fira Sans"></option>
+                <option value="JetBrains Mono"></option>
+                <option value="Fira Code"></option>
+                <option value="DejaVu Sans Mono"></option>
+                <option value="Liberation Mono"></option>
+                <option value="Space Mono"></option>
+              </datalist>
+            </div>
+
+            <div class="field split">
+              <div>
+                <label for="font-weight">Weight</label>
+                <select id="font-weight">
+                  <option value="300">Light</option>
+                  <option value="400">Regular</option>
+                  <option value="500">Medium</option>
+                  <option value="600">Semibold</option>
+                  <option value="700">Bold</option>
+                </select>
+              </div>
+              <div>
+                <label for="font-size">Size <output id="font-size-out">62px</output></label>
+                <input id="font-size" type="range" min="24" max="140" step="1" />
+              </div>
+            </div>
+
+            <div class="field colors">
+              <label class="color-field"><span>Text</span><input id="text-color" type="color" /></label>
+              <label class="color-field"><span>Accent</span><input id="accent-color" type="color" /></label>
+              <label class="color-field"><span>Background</span><input id="background-color" type="color" /></label>
+            </div>
+
+            <div class="field">
+              <label for="background-opacity">Background opacity <output id="opacity-out">72%</output></label>
+              <input id="background-opacity" type="range" min="0" max="100" step="1" />
+            </div>
+
+            <label class="switch-row">
+              <span><strong>Always on top</strong><small>Keep Catime above other windows</small></span>
+              <span class="switch"><input id="always-on-top" type="checkbox" /><span class="track"></span></span>
+            </label>
+
+            <div class="field">
+              <label>Window size</label>
+              <div class="size-presets" id="size-presets">
+                <button data-width="340" data-height="200">Compact</button>
+                <button data-width="440" data-height="240">Standard</button>
+                <button data-width="560" data-height="260">Wide</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="group">
+            <div class="group-head"><h3>Clock</h3></div>
+            <label class="switch-row">
+              <span><strong>24-hour time</strong><small>Turn off for 12-hour time with AM/PM</small></span>
+              <span class="switch"><input id="clock-24h" type="checkbox" /><span class="track"></span></span>
+            </label>
+            <label class="switch-row">
+              <span><strong>Show seconds</strong><small>Include seconds in the clock display</small></span>
+              <span class="switch"><input id="clock-seconds" type="checkbox" /><span class="track"></span></span>
+            </label>
+            <label class="switch-row">
+              <span><strong>Show date</strong><small>Display today's date below the time</small></span>
+              <span class="switch"><input id="clock-date" type="checkbox" /><span class="track"></span></span>
+            </label>
+          </section>
+
+          <section class="group">
+            <div class="group-head"><h3>Countdown</h3></div>
+            <div class="field">
+              <label>Default duration</label>
+              <div class="time-inputs">
+                <label><input id="countdown-h" type="number" min="0" max="24" step="1" /><span>h</span></label>
+                <span class="colon">:</span>
+                <label><input id="countdown-m" type="number" min="0" max="59" step="1" /><span>m</span></label>
+                <span class="colon">:</span>
+                <label><input id="countdown-s" type="number" min="0" max="59" step="1" /><span>s</span></label>
+              </div>
+            </div>
+            <label class="switch-row">
+              <span><strong>Sound alert</strong><small>Play a soft chime when time is up</small></span>
+              <span class="switch"><input id="countdown-sound" type="checkbox" /><span class="track"></span></span>
+            </label>
+            <label class="switch-row">
+              <span><strong>Desktop notification</strong><small>Use the system notification daemon</small></span>
+              <span class="switch"><input id="countdown-notify" type="checkbox" /><span class="track"></span></span>
+            </label>
+          </section>
+
+          <section class="group">
+            <div class="group-head"><h3>Pomodoro</h3></div>
+            <div class="field three">
+              <label><span>Focus</span><span class="number-with-unit"><input id="pomo-work" type="number" min="1" max="180" /><em>min</em></span></label>
+              <label><span>Short break</span><span class="number-with-unit"><input id="pomo-short" type="number" min="1" max="180" /><em>min</em></span></label>
+              <label><span>Long break</span><span class="number-with-unit"><input id="pomo-long" type="number" min="1" max="180" /><em>min</em></span></label>
+            </div>
+            <div class="field split">
+              <div>
+                <label for="pomo-every">Long break every</label>
+                <span class="number-with-unit"><input id="pomo-every" type="number" min="1" max="12" /><em>cycles</em></span>
+              </div>
+              <label class="switch-row inline">
+                <span><strong>Auto-start next</strong><small>Continue without pressing play</small></span>
+                <span class="switch"><input id="pomo-auto" type="checkbox" /><span class="track"></span></span>
+              </label>
+            </div>
+            <label class="switch-row">
+              <span><strong>Sound alert</strong><small>Chime at the end of each phase</small></span>
+              <span class="switch"><input id="pomo-sound" type="checkbox" /><span class="track"></span></span>
+            </label>
+            <label class="switch-row">
+              <span><strong>Desktop notification</strong><small>Show a native notification per phase</small></span>
+              <span class="switch"><input id="pomo-notify" type="checkbox" /><span class="track"></span></span>
+            </label>
+          </section>
+
+          <div class="settings-footer">
+            <button class="text-btn" id="btn-reset-config">Reset to defaults</button>
+            <span class="save-state" id="save-state">Saved</span>
+          </div>
+          <p class="config-path">Config file: <code id="config-path">~/.config/catime/config.json</code></p>
+        </div>
+      </section>
+
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+        <span class="toast-icon"><svg class="icon"><use href="#i-bell" /></svg></span>
+        <div class="toast-copy">
+          <strong id="toast-title"></strong>
+          <p id="toast-body"></p>
+        </div>
+      </div>
+
+      <div class="error-overlay" id="error-overlay" hidden>
+        <strong>Catime could not start</strong>
+        <p id="error-message">The native bridge is unavailable. Launch the app with <code>cargo tauri dev</code>.</p>
+      </div>
+    </div>
+  </body>
+</html>
